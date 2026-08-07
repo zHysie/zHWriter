@@ -1,0 +1,26 @@
+<Window x:Class="zHWriter.App.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="520" Height="160" MinWidth="300" MinHeight="96" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False" Topmost="True" ResizeMode="CanResize"
+        Loaded="Window_Loaded" Closing="Window_Closing" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" PreviewKeyDown="Window_PreviewKeyDown" PreviewMouseDown="Window_PreviewMouseDown" PreviewMouseMove="Window_PreviewMouseMove" PreviewMouseUp="Window_PreviewMouseUp" PreviewMouseWheel="Window_PreviewMouseWheel">
+    <Window.ContextMenu><ContextMenu><MenuItem Header="打开日历" Click="Calendar_Click"/><MenuItem Header="保存" Click="Save_Click"/><Separator/><MenuItem Header="打开日记库文件夹" Click="OpenDiaryFolder_Click"/><MenuItem Header="打开当前日记所在文件夹" Click="OpenCurrentFolder_Click"/><MenuItem Header="设置" Click="Settings_Click"/><Separator/><MenuItem Header="保存并退出" Click="Exit_Click"/></ContextMenu></Window.ContextMenu>
+    <Grid Margin="3">
+        <Border x:Name="CollapsedPanel" Background="#D9101720" CornerRadius="4" Padding="9,3" MouseLeftButtonUp="Collapsed_Click"><TextBlock Text="zH" FontWeight="SemiBold" FontSize="15" Foreground="White"/></Border>
+        <Border x:Name="ExpandedPanel" Visibility="Collapsed" Background="#2217222C" BorderBrush="#745c7488" BorderThickness="1" CornerRadius="6" Padding="8">
+            <Grid>
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Margin="0,0,0,5"><TextBlock Text="{Binding CurrentFileName}" Foreground="{Binding EditorForeground}" FontSize="11" DockPanel.Dock="Left"/><StackPanel Orientation="Horizontal" HorizontalAlignment="Right"><Button Content="日历" Command="{Binding ToggleCalendarCommand}" Padding="7,1" Margin="2,0"/><Button Content="保存" Command="{Binding SaveCommand}" Padding="7,1" Margin="2,0"/></StackPanel></DockPanel>
+                <TextBox x:Name="Editor" Grid.Row="1" Text="{Binding EditorText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0" Foreground="{Binding EditorForeground}" FontSize="15" Opacity="{Binding Settings.TextOpacity}" Padding="2" PreviewKeyDown="Editor_PreviewKeyDown"/>
+                <TextBlock Grid.Row="2" Text="{Binding Status}" Foreground="{Binding SecondaryForeground}" FontSize="10" Margin="2,5,2,0" TextTrimming="CharacterEllipsis"/>
+                <Popup IsOpen="{Binding IsCalendarOpen}" Placement="Bottom" PlacementTarget="{Binding ElementName=ExpandedPanel}" StaysOpen="False" AllowsTransparency="True">
+                    <Border Background="#F51B2733" BorderBrush="#FF5C7488" BorderThickness="1" CornerRadius="6" Padding="8" Width="290">
+                        <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <DockPanel><Button Content="‹" Command="{Binding PreviousMonthCommand}" Width="26"/><TextBlock Text="{Binding CalendarTitle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/><Button Content="›" Command="{Binding NextMonthCommand}" Width="26" DockPanel.Dock="Right"/></DockPanel>
+                            <UniformGrid Grid.Row="1" Columns="7" Margin="0,7,0,2"><TextBlock Text="一" Foreground="White" TextAlignment="Center"/><TextBlock Text="二" Foreground="White" TextAlignment="Center"/><TextBlock Text="三" Foreground="White" TextAlignment="Center"/><TextBlock Text="四" Foreground="White" TextAlignment="Center"/><TextBlock Text="五" Foreground="White" TextAlignment="Center"/><TextBlock Text="六" Foreground="White" TextAlignment="Center"/><TextBlock Text="日" Foreground="White" TextAlignment="Center"/></UniformGrid>
+                            <ItemsControl Grid.Row="2" ItemsSource="{Binding CalendarDays}"><ItemsControl.ItemsPanel><ItemsPanelTemplate><UniformGrid Columns="7"/></ItemsPanelTemplate></ItemsControl.ItemsPanel><ItemsControl.ItemTemplate><DataTemplate><Button Command="{Binding DataContext.OpenCalendarDateCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Background="{Binding Background}" Opacity="{Binding Opacity}" BorderThickness="0" Padding="2"><StackPanel><TextBlock Text="{Binding DayNumber}" Foreground="White" TextAlignment="Center"/><TextBlock Text="{Binding Marker}" Foreground="#FF7DD3FC" Height="8" FontSize="10" TextAlignment="Center"/></StackPanel></Button></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+                            <Button Grid.Row="3" Content="今天" Command="{Binding TodayCommand}" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

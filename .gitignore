@@ -224,9 +224,7 @@ _pkginfo.txt
 *.appx
 *.appxbundle
 *.appxupload
-# 不忽略本项目的桌面应用源码
-!src/zHWriter.App/
-!src/zHWriter.App/**
+
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
@@ -387,7 +385,7 @@ test-results/
 
 # Mac bundle stuff
 *.dmg
-*.app
+
 
 # content below from: https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 # General
