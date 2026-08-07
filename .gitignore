@@ -224,6 +224,9 @@ _pkginfo.txt
 *.appx
 *.appxbundle
 *.appxupload
+# 不忽略本项目的桌面应用源码
+!src/zHWriter.App/
+!src/zHWriter.App/**
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
