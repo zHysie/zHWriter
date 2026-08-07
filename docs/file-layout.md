@@ -1,3 +1,9 @@
 # File layout
 
-The default daily path is `Journal/yyyy/Daily/MM/yyyy-MM-dd.md`. The word `Daily` is a literal directory name, not a date format token. The default template is `Templates/Daily.md`. Attachments live in each daily folder's `assets` directory and Markdown references use forward slashes.
+Periodic notes live under three top-level folders inside `DiaryRoot`:
+
+- `Daily/MM/yyyy-MM-dd.md` — daily notes, grouped by month (e.g. `Daily/08/2026-08-07.md`)
+- `Weekly/yyyy-wwW.md` — weekly notes, ISO 8601 week number (e.g. `Weekly/2026-32W.md`)
+- `Monthly/yyyy-MM.md` — monthly notes (e.g. `Monthly/2026-08.md`)
+
+Default templates live in `Templates/Daily.md`, `Templates/Weekly.md` and `Templates/Monthly.md`, and are only created when missing. Attachments live in each note folder's `assets` directory and Markdown references use forward slashes.

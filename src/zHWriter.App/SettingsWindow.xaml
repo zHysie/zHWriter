@@ -1,12 +1,51 @@
-<Window x:Class="zHWriter.App.SettingsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="zHWriter 设置" Width="530" Height="490" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
-    <ScrollViewer VerticalScrollBarVisibility="Auto"><Grid Margin="18"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><Grid.ColumnDefinitions><ColumnDefinition Width="135"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-        <TextBlock Text="日记库根目录" VerticalAlignment="Center"/><DockPanel Grid.Column="1"><Button Content="选择…" Click="SelectRoot_Click" DockPanel.Dock="Right" Margin="8,0,0,0"/><TextBox x:Name="Root"/></DockPanel>
-        <TextBlock Grid.Row="1" Text="日记目录格式" VerticalAlignment="Center" Margin="0,10,0,0"/><TextBox x:Name="DirectoryPattern" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0"/>
-        <TextBlock Grid.Row="2" Text="文件名格式" VerticalAlignment="Center" Margin="0,10,0,0"/><TextBox x:Name="FileNamePattern" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0"/>
-        <TextBlock Grid.Row="3" Text="模板相对路径" VerticalAlignment="Center" Margin="0,10,0,0"/><TextBox x:Name="TemplatePath" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0"/>
-        <TextBlock Grid.Row="4" Text="附件目录名" VerticalAlignment="Center" Margin="0,10,0,0"/><TextBox x:Name="AttachmentFolder" Grid.Row="4" Grid.Column="1" Margin="0,10,0,0"/>
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="0,14,0,0"><CheckBox x:Name="Monday" Content="一周从星期一开始"/><CheckBox x:Name="EntryMarks" Content="显示已有日记的圆点" Margin="0,5,0,0"/><CheckBox x:Name="AlwaysTop" Content="始终置顶" Margin="0,5,0,0"/></StackPanel>
-        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,14,0,0"><TextBlock Text="悬停展开(ms)" VerticalAlignment="Center"/><TextBox x:Name="ExpandDelay" Width="60" Margin="8,0,15,0"/><TextBlock Text="移出折叠(ms)" VerticalAlignment="Center"/><TextBox x:Name="CollapseDelay" Width="60" Margin="8,0,0,0"/></StackPanel>
-        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0"><Button Content="取消" IsCancel="True" Padding="14,4" Margin="0,0,8,0"/><Button Content="保存" IsDefault="True" Padding="14,4" Click="Save_Click"/></StackPanel>
-    </Grid></ScrollViewer>
+<Window x:Class="zHWriter.App.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="zHWriter 设置" Width="530" Height="360" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="135"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="笔记库根目录" VerticalAlignment="Center"/>
+            <DockPanel Grid.Column="1">
+                <Button Content="选择…" Click="SelectRoot_Click" DockPanel.Dock="Right" Margin="8,0,0,0"/>
+                <TextBox x:Name="Root"/>
+            </DockPanel>
+
+            <TextBlock Grid.Row="1" Text="模板目录" VerticalAlignment="Center" Margin="0,10,0,0"/>
+            <TextBox x:Name="TemplatesDir" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0"/>
+
+            <TextBlock Grid.Row="2" Text="附件目录名" VerticalAlignment="Center" Margin="0,10,0,0"/>
+            <TextBox x:Name="AttachmentFolder" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0"/>
+
+            <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,14,0,0">
+                <CheckBox x:Name="Monday" Content="一周从星期一开始"/>
+                <CheckBox x:Name="EntryMarks" Content="显示已有笔记的圆点" Margin="0,5,0,0"/>
+                <CheckBox x:Name="AlwaysTop" Content="始终置顶" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,14,0,0">
+                <TextBlock Text="悬停展开(ms)" VerticalAlignment="Center"/>
+                <TextBox x:Name="ExpandDelay" Width="60" Margin="8,0,15,0"/>
+                <TextBlock Text="移出折叠(ms)" VerticalAlignment="Center"/>
+                <TextBox x:Name="CollapseDelay" Width="60" Margin="8,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="取消" IsCancel="True" Padding="14,4" Margin="0,0,8,0"/>
+                <Button Content="保存" IsDefault="True" Padding="14,4" Click="Save_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>

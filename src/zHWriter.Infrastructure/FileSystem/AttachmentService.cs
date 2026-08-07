@@ -3,16 +3,16 @@ using zHWriter.Core.Models;
 
 namespace zHWriter.Infrastructure.FileSystem;
 
-/// <summary>Copies image files into the entry-local assets directory without overwriting attachments.</summary>
+/// <summary>Copies image files into the note-local assets directory without overwriting attachments.</summary>
 public sealed class AttachmentService : IAttachmentService
 {
     private static readonly HashSet<string> Extensions = new(StringComparer.OrdinalIgnoreCase) { ".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp" };
     private readonly IJournalPathService _paths;
     public AttachmentService(IJournalPathService paths) => _paths = paths;
 
-    public async Task<IReadOnlyList<string>> CopyImageFilesAsync(IEnumerable<string> sourceFiles, DateOnly date, AppSettings settings, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> CopyImageFilesAsync(IEnumerable<string> sourceFiles, PeriodicNoteType type, DateOnly date, AppSettings settings, CancellationToken cancellationToken = default)
     {
-        var directory = _paths.GetAttachmentDirectory(date, settings);
+        var directory = _paths.GetAttachmentDirectory(type, date, settings);
         Directory.CreateDirectory(directory);
         var result = new List<string>();
         foreach (var source in sourceFiles.Where(File.Exists))
@@ -28,10 +28,10 @@ public sealed class AttachmentService : IAttachmentService
         return result;
     }
 
-    public string BuildMarkdownReference(string attachmentPath, DateOnly date, AppSettings settings)
+    public string BuildMarkdownReference(string attachmentPath, PeriodicNoteType type, DateOnly date, AppSettings settings)
     {
-        var journalDirectory = Path.GetDirectoryName(_paths.GetJournalPath(date, settings))!;
-        var relative = Path.GetRelativePath(journalDirectory, attachmentPath).Replace('\\', '/');
+        var noteDirectory = Path.GetDirectoryName(_paths.GetNotePath(type, date, settings))!;
+        var relative = Path.GetRelativePath(noteDirectory, attachmentPath).Replace('\\', '/');
         return $"![]({relative})";
     }
 

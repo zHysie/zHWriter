@@ -31,7 +31,7 @@ public partial class App : System.Windows.Application
         var menu = new Forms.ContextMenuStrip();
         menu.Items.Add("显示 / 隐藏", null, (_, _) => Dispatcher.Invoke(() => _window?.ToggleVisibility()));
         menu.Items.Add("打开今天的日记", null, (_, _) => Dispatcher.Invoke(async () => await vm.OpenTodayAsync()));
-        menu.Items.Add("打开日历", null, (_, _) => Dispatcher.Invoke(() => { _window?.Show(); _window?.Activate(); vm.IsCalendarOpen = true; _ = vm.RebuildCalendarAsync(); }));
+        menu.Items.Add("打开日历", null, (_, _) => Dispatcher.Invoke(() => { if (_window is not null) { _window.Show(); _window.Activate(); _window.ViewModel.IsExpanded = true; _window.ViewModel.IsCalendarOpen = true; } _ = vm.RebuildCalendarAsync(); }));
         menu.Items.Add("打开日记库文件夹", null, (_, _) => Dispatcher.Invoke(() => _window?.OpenDiaryFolder()));
         menu.Items.Add("保存并退出", null, (_, _) => Dispatcher.Invoke(async () => await _window!.SaveAndExitAsync()));
         _tray = new Forms.NotifyIcon { Text = "zHWriter", Icon = System.Drawing.SystemIcons.Application, Visible = true, ContextMenuStrip = menu };

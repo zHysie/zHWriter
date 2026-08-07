@@ -1,12 +1,10 @@
 namespace zHWriter.Core.Models;
 
-/// <summary>Persisted application preferences. Diary-relative paths are never stored as absolute paths.</summary>
+/// <summary>Persisted application preferences. Note-library-relative paths are never stored as absolute paths.</summary>
 public sealed class AppSettings
 {
     public string DiaryRoot { get; set; } = string.Empty;
-    public string JournalDirectoryPattern { get; set; } = "Journal/yyyy/Daily/MM";
-    public string JournalFileNamePattern { get; set; } = "yyyy-MM-dd";
-    public string DailyTemplateRelativePath { get; set; } = "Templates/Daily.md";
+    public string TemplatesDirectory { get; set; } = "Templates";
     public string AttachmentFolderName { get; set; } = "assets";
     public DateTime? LastOpenedDate { get; set; }
     public double WindowLeft { get; set; } = 100;

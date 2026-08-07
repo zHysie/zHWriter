@@ -2,12 +2,12 @@ using zHWriter.Core.Models;
 
 namespace zHWriter.Core.Interfaces;
 
-/// <summary>Validates journal settings and calculates paths under the selected diary root.</summary>
+/// <summary>Validates settings and calculates periodic-note paths under the selected note-library root.</summary>
 public interface IJournalPathService
 {
-    string GetJournalPath(DateOnly date, AppSettings settings);
-    string GetTemplatePath(AppSettings settings);
-    string GetAttachmentDirectory(DateOnly date, AppSettings settings);
+    string GetNotePath(PeriodicNoteType type, DateOnly date, AppSettings settings);
+    string GetTemplatePath(PeriodicNoteType type, AppSettings settings);
+    string GetAttachmentDirectory(PeriodicNoteType type, DateOnly date, AppSettings settings);
     bool IsInsideDiaryRoot(string path, AppSettings settings);
     void Validate(AppSettings settings);
 }

@@ -445,6 +445,12 @@ $RECYCLE.BIN/
 .idea/
 *.sln.iml
 
+# zHWriter: local tooling / editor artifacts
+.build-home/
+.codegraph/
+.omo/
+.claude/
+
 ##
 ## Visual Studio Code
 ##
